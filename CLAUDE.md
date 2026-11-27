@@ -3,15 +3,15 @@
 Handoff from a Claude chat session (Nov 2026). Read this before changing anything.
 
 ## What this is
-A Hebrew, RTL, installable web app (PWA) for **Michal** (~60, Android, the mother of Raz's girlfriend May) to save recipe videos from Instagram / TikTok / Facebook.
+A Hebrew, RTL, installable web app (PWA) for **Michal** (an older, non-technical Android user) to save recipe videos from Instagram / TikTok / Facebook.
 - Live: https://raz9z.github.io/michal-recipes/ (GitHub Pages, `main` branch, root)
 - Repo: github.com/RaZ9Z/michal-recipes
 - Pushing to `main` redeploys in ~1 min. The service worker is network-first for pages, so her installed app picks up changes on next open with internet.
 
 ## Users and design rules
-- Primary user is 60 and not technical. Big text (19px base), 44px+ targets (most are 50-64px), every icon has a text label, no swipe-only or long-press-only actions, confirm before deleting, max ~3 main screens.
+- Primary user is older and not technical. Big text (19px base), 44px+ targets (most are 50-64px), every icon has a text label, no swipe-only or long-press-only actions, confirm before deleting, max ~3 main screens.
 - All UI text is Hebrew, neutral-plural imperative style ("לוחצים", "בוחרים"). Michal is addressed by name only on the empty home screen.
-- Raz (the developer) wants direct, no-filler communication, replies in English.
+- The developer wants direct, no-filler communication, replies in English.
 
 ## Architecture (no build step, no framework)
 - `index.html`: the whole app. Inline CSS + one inline `<script>` wrapped in `{ }`. Views rendered as HTML strings into `#app`; event delegation on `document`.
@@ -54,15 +54,15 @@ Overlays (confirm dialog, cooking mode with Wake Lock + text size) close on Back
 All user/remote strings go through `esc()` before entering HTML. Keep it that way.
 
 ## Decisions already made
-- PWA over native app; Chrome install = real WebAPK with share target. A custom APK (TWA/Bubblewrap) was rejected: sideload warnings for a 60-year-old, needs assetlinks on raz9z.github.io, keystore management. Revisit only if Chrome install fails on her phone or Play Store is wanted.
+- PWA over native app; Chrome install = real WebAPK with share target. A custom APK (TWA/Bubblewrap) was rejected: sideload warnings for a non-technical user, needs assetlinks on raz9z.github.io, keystore management. Revisit only if Chrome install fails on her phone or Play Store is wanted.
 - No login, no backend yet.
 - In the claude.ai artifact preview (iframe) the app seeds 5 demo recipes; on the real site it starts empty.
 
 ## Status
-- Deployed and live. Pending: real-phone test of install + Share menu (Raz's phone first, then Michal's). Tell her to install with Chrome, and in Instagram/Facebook use Share → "Share to..."/More to reach the Android share sheet; pin "המתכונים" there.
+- Deployed and live. Pending: real-phone test of install + Share menu (developer's phone first, then Michal's). Tell her to install with Chrome, and in Instagram/Facebook use Share → "Share to..."/More to reach the Android share sheet; pin "המתכונים" there.
 
 ## Next ideas (not started)
-1. Supabase sync so May can add recipes and nothing is lost on phone change.
+1. Supabase sync so family members can add recipes and nothing is lost on phone change.
 2. AI extraction of clean ingredients/steps from caption or video audio.
 3. Verify/replace microlink if Instagram previews are mostly empty.
 
